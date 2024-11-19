@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React from 'react';
 
 const ProductCard = ({ product, addToCart, isInCart }: any) => {
   return (
