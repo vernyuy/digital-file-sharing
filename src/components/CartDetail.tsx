@@ -1,9 +1,10 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Stripe from "stripe";
 
 const CartDetail = ({ cart, removeFromCart, clearCart }: any) => {
-  const totalPrice = cart.reduce((total, item) => total + item.price, 0);
+  const totalPrice = cart.reduce((total: any, item: { price: any; }) => total + item.price, 0);
   const [isLoading, setIsLoading] = useState(false)
 
   const stripePayment = async () => {
@@ -16,8 +17,8 @@ const CartDetail = ({ cart, removeFromCart, clearCart }: any) => {
         apiVersion: "2023-10-16",
       }
     );
-    let p: any[] = [];
- cart.map((item)=>p.push({
+    const p: any[] = [];
+ cart.map((item: { price: number; name: any; image: any; })=>p.push({
     quantity: 1,
     price_data: {
       currency: "usd",
@@ -67,12 +68,12 @@ const CartDetail = ({ cart, removeFromCart, clearCart }: any) => {
 
       <div className="bg-white shadow-xl rounded-lg p-8">
         <div className="flex flex-col space-y-6">
-          {cart.map((item, index) => (
+          {cart.map((item: { id: React.Key | null | undefined; image: string | undefined; name: string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | null | undefined; price: string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | null | undefined; }) => (
             <div key={item.id} className="flex justify-between items-center border-b pb-4 mb-4">
               <div className="flex items-center">
                 <img
                   src={item.image}
-                  alt={item.name}
+                  alt={item?item.name?.toString():''}
                   className="w-16 h-16 object-cover rounded-md mr-4"
                 />
                 <div>

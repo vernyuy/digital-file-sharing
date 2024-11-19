@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useEffect, useState } from "react";
 import type { Schema } from "../amplify/data/resource";
 import { generateClient } from "aws-amplify/data";
@@ -22,8 +23,8 @@ function App() {
     setCart((prevCart: any) => [...prevCart, product]);
   };
   // Remove item from the cart
-  const removeFromCart = (productId) => {
-    setCart(cart.filter(item => item.id !== productId));
+  const removeFromCart = (productId: any) => {
+    setCart(cart.filter((item: any) => item.id !== productId));
   };
 
   // Clear the entire cart
