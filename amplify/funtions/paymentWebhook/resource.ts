@@ -2,6 +2,7 @@ import { defineFunction, secret } from "@aws-amplify/backend";
 
 
 export const paymentWebhook = defineFunction({
+    name: 'paymentWebhook',
     entry: 'handler.ts',
     environment: {
         SIGNATURE: secret('SIGNATURE'),
