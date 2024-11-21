@@ -5,6 +5,8 @@ import { generateClient } from "aws-amplify/data";
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 import ProductCard from "./components/ProductCard";
 import CartDetail from "./components/CartDetail";
+import { FileUploader } from '@aws-amplify/ui-react-storage';
+import '@aws-amplify/ui-react/styles.css';
 
 const client = generateClient<Schema>();
 
@@ -72,6 +74,13 @@ function App() {
           {/* Home Page with Product List */}
           <Route path="/" element={
             <section id="shop" className="py-16 bg-white">
+ {/* <StorageImage alt="sleepy-cat" path="public/airbnb.jpg" /> */}
+    <FileUploader
+      acceptedFileTypes={['image/*', 'audio/*']}
+      path="/"
+      maxFileCount={1}
+      isResumable
+    />
               <div className="container mx-auto text-center">
                 <h3 className="text-3xl font-bold mb-6">Featured Products</h3>
                 <div className="grid px-10 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">

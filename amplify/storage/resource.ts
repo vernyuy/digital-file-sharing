@@ -4,6 +4,6 @@ import {paymentWebhook} from '../funtions/paymentWebhook/resource'
 export const storage = defineStorage({
   name: 'songStorage',
   access: (allow) => ({
-    'songs/*': [allow.resource(paymentWebhook).to(['read'])]
+    '*': [allow.resource(paymentWebhook).to(['read'])]
   })
 })
