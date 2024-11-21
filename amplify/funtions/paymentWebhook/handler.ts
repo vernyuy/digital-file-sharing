@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 // import {env} from '$amplify/env/main'
 // import { verifyPaymentWebhook} from './utils/verifyPaymentWebhook'
@@ -54,10 +55,17 @@
 //     return 'Function end!'
 // }
 
-import type { Handler } from 'aws-lambda';
+import type { APIGatewayProxyHandler } from "aws-lambda";
 
-export const handler: Handler = async (event, context) => {
-  // your function code goes here
-  console.log(event)
-  return 'Hello, World!';
+export const handler = async (event: any) => {
+  console.log("event", event);
+  return {
+    statusCode: 200,
+    // Modify the CORS settings below to match your specific requirements
+    headers: {
+      "Access-Control-Allow-Origin": "*", // Restrict this to domains you trust
+      "Access-Control-Allow-Headers": "*", // Specify only the headers you need to allow
+    },
+    body: JSON.stringify("Hello from myFunction!"),
+  };
 };
