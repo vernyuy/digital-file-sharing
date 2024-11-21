@@ -19,7 +19,7 @@ const backend =  defineBackend({
 });
 
 const funcURL = backend.paymentWebhook.resources.lambda.addFunctionUrl({
-  authType: FunctionUrlAuthType.NONE
+  authType: FunctionUrlAuthType.AWS_IAM
 })
 
 backend.paymentWebhook.resources.lambda.addToRolePolicy(
