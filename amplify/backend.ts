@@ -3,7 +3,7 @@ import { auth } from './auth/resource';
 import { data } from './data/resource';
 import { storage } from './storage/resource';
 import {paymentWebhook} from './funtions/paymentWebhook/resource'
-import {FunctionUrlAuthType} from 'aws-cdk-lib/aws-lambda'
+// import {FunctionUrlAuthType} from 'aws-cdk-lib/aws-lambda'
 import { Stack } from "aws-cdk-lib";
 import {
   AuthorizationType,
@@ -20,9 +20,9 @@ const backend =  defineBackend({
   paymentWebhook,
 });
 
-const funcURL = backend.paymentWebhook.resources.lambda.addFunctionUrl({
-  authType: FunctionUrlAuthType.NONE
-})
+// const funcURL = backend.paymentWebhook.resources.lambda.addFunctionUrl({
+//   authType: FunctionUrlAuthType.NONE
+// })
 
 backend.paymentWebhook.resources.lambda.addToRolePolicy(
   new PolicyStatement({
@@ -31,11 +31,11 @@ backend.paymentWebhook.resources.lambda.addToRolePolicy(
   })
 )
 
-backend.addOutput({
-  custom: {
-    paymentWebhookUrl: funcURL.url
-  }
-})
+// backend.addOutput({
+//   custom: {
+//     paymentWebhookUrl: funcURL.url
+//   }
+// })
 
 
 // create a new API stack
